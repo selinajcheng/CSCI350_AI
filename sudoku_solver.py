@@ -59,16 +59,234 @@ def is_valid(board, row, col, num):
     """
     
     # TODO: Check if num is in the same row
-    
+    if num in board[row]:
+        return False
     
     # TODO: Check if num is in the same column
-    
-    
-    # TODO: Check if num is in the same 3x3 box
-    
-    
-    return True  # Replace this with your logic
+    if num in [board[i][col] for i in range(9)]:
+        return False
 
+    # TODO: Check if num is in the same 3x3 box
+    # if row == 1 or row == 2 or row == 3:
+    #     if num in [board[row][i] for i in range(9)]:
+    #         return False
+    # if row == 4 or row == 5 or row == 6:
+    #     if num in [board[row][i] for i in range(9)]:
+    #         return False
+    # if row == 7 or row == 8 or row == 9:
+    #     if num in [board[row][i] for i in range(9)]:
+    #         return False
+    if row % 3 == 1 and col % 3 == 1: #top left square
+        # for i in range(1,3):                # diagonal
+        #     if board[row+i][col+i] == num:
+        #         return False        
+        
+        # Check the same row
+        if board[row][col+1] == num:
+            return False
+        if board[row][col+2] == num:
+            return False
+
+        # Check the row below
+        if board[row+1][col] == num:
+            return False
+        if board[row+1][col+1] == num:
+            return False
+        if board[row+1][col+2] == num:
+            return False
+
+        # Check two rows below
+        if board[row+2][col] == num:
+            return False
+        if board[row+2][col+1] == num:
+            return False
+        if board[row+2][col+2] == num:
+            return False
+
+    if row % 3 == 1 and col % 3 == 2: #top middle square
+        # Check the same row
+        if board[row][col-1] == num:
+            return False
+        if board[row][col+1] == num:
+            return False
+
+        # Check row below
+        if board[row+1][col] == num:
+            return False
+        if board[row+1][col-1] == num:
+            return False
+        if board[row+1][col+1] == num:
+            return False
+        
+        # Check two rows below
+        if board[row+2][col] == num:
+            return False
+        if board[row+2][col-1] == num:
+            return False
+        if board[row+2][col+1] == num:
+            return False
+
+    if row % 3 == 1 and col % 3 == 0: #top right square
+        # check same row
+        if board[row][col-1] == num:
+            return False
+        if board[row][col-2] == num:
+            return False
+        
+        # check row below
+        if board[row+1][col] == num:
+            return False
+        if board[row+1][col-1] == num:
+            return False
+        if board[row+1][col-2] == num:
+            return False
+        
+        # Check two rows below
+        if board[row+2][col] == num:
+            return False
+        if board[row+2][col-1] == num:
+            return False
+        if board[row+2][col-2] == num:
+            return False
+
+    if row % 3 == 1 and col % 3 == 2: #middle left square
+        # Check one row above
+        if board[row-1][col] == num:
+            return False
+        if board[row-1][col+1] == num:
+            return False
+        if board[row-1][col+2] == num:
+            return False
+            
+        # Check the same row
+        if board[row][col+1] == num:
+            return False
+        if board[row][col+2] == num:
+            return False
+
+        # Check the row below
+        if board[row+1][col] == num:
+            return False
+        if board[row+1][col+1] == num:
+            return False
+        if board[row+1][col+2] == num:
+            return False
+
+    if row % 3 == 2 and col % 3 == 2: # middle middle square
+        # Check one rows above
+        if board[row-1][col] == num:
+            return False
+        if board[row-1][col-1] == num:
+            return False
+        if board[row-1][col+1] == num:
+            return False
+
+        # Check the same row
+        if board[row][col-1] == num:
+            return False
+        if board[row][col+1] == num:
+            return False
+
+        # Check row below
+        if board[row+1][col] == num:
+            return False
+        if board[row+1][col-1] == num:
+            return False
+        if board[row+1][col+1] == num:
+            return False
+    
+    if row % 3 == 1 and col % 3 == 0: # middle right square
+        # Check one row above
+        if board[row-1][col] == num:
+            return False
+        if board[row-1][col-1] == num:
+            return False
+        if board[row-1][col-2] == num:
+            return False
+
+        # check same row
+        if board[row][col-1] == num:
+            return False
+        if board[row][col-2] == num:
+            return False
+        
+        # check row below
+        if board[row+1][col] == num:
+            return False
+        if board[row+1][col-1] == num:
+            return False
+        if board[row+1][col-2] == num:
+            return False
+        
+    if row % 3 == 0 and col % 3 == 1: # bottom left square
+        # Check 2 rows above
+        if board[row-2][col] == num:
+            return False
+        if board[row-2][col+1] == num:
+            return False
+        if board[row-2][col+2] == num:
+            return False
+
+        # Check one row above
+        if board[row-1][col] == num:
+            return False
+        if board[row-1][col+1] == num:
+            return False
+        if board[row-1][col+2] == num:
+            return False
+            
+        # Check the same row
+        if board[row][col+1] == num:
+            return False
+        if board[row][col+2] == num:
+            return False
+
+    if row % 3 == 0 and col % 3 == 2: # bottom middle square
+        # Check 2 rows above
+        if board[row-2][col] == num:
+            return False
+        if board[row-2][col-1] == num:
+            return False
+        if board[row-2][col+1] == num:
+            return False
+
+        # Check one row above
+        if board[row-1][col] == num:
+            return False
+        if board[row-1][col-1] == num:
+            return False
+        if board[row-1][col+1] == num:
+            return False
+            
+        # Check the same row
+        if board[row][col-1] == num:
+            return False
+        if board[row][col+1] == num:
+            return False
+    
+    if row % 3 == 0 and col % 3 == 0: # bottom right square
+        # Check 2 rows above
+        if board[row-2][col] == num:
+            return False
+        if board[row-2][col-1] == num:
+            return False
+        if board[row-2][col-2] == num:
+            return False
+
+        # Check one row above
+        if board[row-1][col] == num:
+            return False
+        if board[row-1][col-1] == num:
+            return False
+        if board[row-1][col-2] == num:
+            return False
+            
+        # Check the same row
+        if board[row][col-1] == num:
+            return False
+        if board[row][col-2] == num:
+            return False
+    
 def solve_sudoku(board):
     """
     TODO: Implement this function!
@@ -97,15 +315,20 @@ def solve_sudoku(board):
     empty = find_empty_cell(board)
     
     # TODO: If no empty cells, we're done!
-    
+    if empty is None:
+        return True
     
     # TODO: Try numbers 1-9
-    
+    for num in range(1, 10):
+        if is_valid(board, empty[0], empty[1], num):
+            board[empty[0]][empty[1]] = num           # try num and see if we can continue to solve the board
+            if solve_sudoku(board):
+                return True
+            else:
+                board[empty[0]][empty[1]] = 0  # backtrack/undo since placement was wrong
     
     # TODO: If we tried all numbers and none worked, return False
-    
-    
-    pass  # Remove this when you implement the function
+    return False
 
 # Test cases
 if __name__ == "__main__":
