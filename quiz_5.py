@@ -13,6 +13,27 @@ print(f'Length of text: {len(text)} characters')
 vocab = sorted(set(text))
 chars = tf.strings.unicode_split(text, input_encoding='UTF-8')
 
+char2idx = {char: idx for idx, char in enumerate(vocab)}
+idx2char = np.array(vocab)
+
+text_as_int = np.array([char2idx[c] for c in text])
+
+examples_per_epoch = len(text) // (sequence_length + 1)
+
+char_dataset = tf.data.Dataset.from_tensor_slices(text_as_int)
+sequences = char_dataset.batch(sequence_length + 1, drop_remainder=True)
+
+def split_input_target(chunk):
+    input_text = chunk[:-1]
+    target_text = chunk[1:]
+    return input_text, target_text
+
+dataset = sequences.map(split_input_target)
+
+BATCH_SIZE = 64
+BUFFER_SIZE = 10000
+dataset = dataset.shuffle(BUFFER_SIZE).batch(BATCH_SIZE, drop_remainder=True)
+
 
 # 2. Build LSTM model
 vocab_size = len(vocab) # of unique_words
@@ -59,3 +80,8 @@ def generate_text ( seed_text , length =100 , temperature =1.0) :
         input_ids = input_ids[:, -sequence_length:]
 
     return seed_text + ''.join(generated_chars)
+
+print("\nGenerating text...")
+seed = "ROMEO: "
+generated = generate_text(seed, length=200, temperature=1.0)
+print(generated)
