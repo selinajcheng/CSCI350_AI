@@ -31,8 +31,43 @@ Our LSTM model has 512 hidden layers that controls the size and capacity of the 
 
 4. Results and Observations:
 
-We ran into trouble with the model, and have not been able to see results in action. Unfortunately, we were unable to observe whether or not our model was successful.
+We trained the model on 10 and then 50 epochs. There was a noticeable difference between the two. With 10 epochs, the text the model generated had the tone of Shakespearean text, but it sounded a bit off. There were many made-up words, some that we could guess the possible meanings of, but some were basically complete unknowns. There was also no logic/flow between the paragraphs and dialogue. 
+
+When trained with 50 epochs, the text the model produced still had hallucinated words, but they felt less unfitting with the surrounding text. There was now also flow to the dialogue and some creative parts such as the "For woe!" and "lamentaining".
+
+Both models seemed to have gotten the hang of how English sounds fit together.  
 
 5. Team Member Contributions:
 
 All 3 of us worked on the project together, starting it in class and them continuing to work at home as we hadn't finished in the allotted classtime. We then gathered together virtually to write the README and summarize our work.
+
+## Results
+
+> With LSTM trained w/ 10 epochs.
+
+Generating text...
+ROMEO: LUCE:
+A peritellant, mine our grace, you
+hourself me intent: nor dotend horrow.
+
+MASPIAN:
+'Twill you not business the breast of Milan?
+Which, woe puilth.
+
+CLAUDIO:
+Boy, my lord?
+
+CURTIS:
+I pray me, wo
+
+> With LSTM trained w/ 50 epochs.
+
+Generating text...
+ROMEO: Office,' And Camat:
+We do within these treason doubting light.
+O Lady Bonural Montague,
+Speak from off fortune with lamentaining?
+
+ROMEO:
+For woe! uncustation, and so dare
+fair? for this wringly lack
